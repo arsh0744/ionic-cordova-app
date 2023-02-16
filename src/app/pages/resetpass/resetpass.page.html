@@ -1,0 +1,56 @@
+
+<ion-header >
+  <ion-toolbar color="dark" default-href="login">
+    <ion-buttons slot="start"  >
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reset</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="flex-center">
+    <ion-card>
+      <ion-card-header color="--ion-color-medium">
+        <ion-card-title color="success">Reset Password</ion-card-title>
+
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item id="getotpform active">
+        <form [formGroup]="getOTPForm" (ngSubmit)="getOTP()" >
+        <ion-item >
+          <ion-label position="floating">Enter Registered Email</ion-label>
+          <ion-input placeholder="Email@mail.com" type="mail" ></ion-input>
+
+
+        </ion-item>
+        <ion-button color="success" size="full"shape="round" type="submit" color="dark">Get OTP</ion-button>
+      </form>
+    </ion-item>
+      <ion-button color="dark" size="full" fill="clear" (click)="showOTPForm()" >Already Have an OTP ?</ion-button>
+
+     <ion-item  >
+
+      <form [formGroup]="submitOTPForm" (ngSubmit)="submitOTP()" >
+        <ion-item>
+          <ion-label position="floating">Enter 6 Digit OTP</ion-label>
+          <ion-input placeholder="OTP" type="number"  ></ion-input>
+        </ion-item>
+      </form>
+    </ion-item>
+    <ion-item>
+      <ion-label color="success">
+        OTP sent to your Registered Email
+
+
+      </ion-label>
+      <ion-icon name="checkmark-circle" color="succes"></ion-icon>
+    </ion-item>
+
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

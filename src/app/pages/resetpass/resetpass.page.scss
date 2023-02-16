@@ -1,0 +1,12 @@
+ion-content{
+    --background : var(--ion-color-medium)
+}
+#getotpform-active{
+    transform: scale(0);
+}
+ion-loading.custom-loading {
+    --background: #e3edff;
+    --spinner-color: #1c6dff;
+
+    color: #1c6dff;
+  }

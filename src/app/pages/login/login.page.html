@@ -1,0 +1,83 @@
+<ion-content>
+
+  <div class="flex-center">
+    
+    <ion-card>
+      <ion-card-header>
+        <ion-grid>
+
+          <!-- Check if this can be made in pill or tabs    -->
+
+
+        <ion-row size="full">
+          <ion-col >
+        <ion-card-title color="success" (click)="LoginChanger(false)"
+        
+        
+        >Login</ion-card-title>
+      </ion-col>
+      <ion-col>
+        <ion-card-title color="primary" id="adminLogin" (click)="LoginChanger(true)"
+        style="display: flex ; flex-direction: row-reverse;"
+        >Admin</ion-card-title>    
+      </ion-col>
+      </ion-row>
+
+
+
+       <!-- Check if this can be made in pill or tabs    -->
+    </ion-grid>
+      </ion-card-header>
+
+      <ion-card-content *ngIf="adminLoginForm==false" id="l1">
+        <form [formGroup]="LoginForm" (ngSubmit)="login()">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input placeholder="Email@mail.com" type="mail" formControlName="login"></ion-input>
+
+        </ion-item>
+        <ion-item *ngIf="LoginForm.get('login').touched && LoginForm.get('login').invalid">
+          <ion-label color="danger" *ngIf="LoginForm.get('login').value==''">Email Is Required</ion-label>
+          <ion-label color="danger" *ngIf="LoginForm.get('login').errors.email">Enter Valid Email</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input placeholder="Password" type="password"  formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="LoginForm.get('password').touched && LoginForm.get('password').invalid">
+          <ion-label color="danger" *ngIf="LoginForm.get('login').value==''">Password Is Required</ion-label>
+        </ion-item>
+        <ion-button color="dark" size="full" fill="clear" (click)="resetPass()">Forgot password</ion-button>
+        <ion-button color="success" size="full"shape="round" type="submit">Login</ion-button>
+        <ion-button color="medium"size="full" shape="round" (click)=" registerPageLoad()">Register</ion-button>
+
+      </form>
+      </ion-card-content>
+
+
+          <!-- Add animation for Smooth Transition    -->
+
+      <ion-card-content *ngIf="adminLoginForm==true" id="l2">
+        <form [formGroup]="adminForm" (ngSubmit)="adminLogin()">
+        <ion-item>
+          <ion-label position="floating">Admin ID</ion-label>
+          <ion-input placeholder="Admin" type="text" formControlName="adminLogin"></ion-input>
+
+        </ion-item>
+       
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input placeholder="Password" type="password"  formControlName="adminPassword"></ion-input>
+        </ion-item>
+       
+        
+        <ion-button color="success" size="full"shape="round" type="submit">Login</ion-button>
+        
+
+      </form>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>
