@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
-import { async } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { User } from "src/app/entity/User";
+import { ApiserviceService } from 'src/app/services/apiservice.service';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,10 @@ export class RegisterPage implements OnInit {
    //Declarations--------------------------------------------------------------
 
 
-  constructor(formbBuilder : FormBuilder,private loadingCtrl: LoadingController) {
+  constructor(formbBuilder : FormBuilder,private loadingCtrl: LoadingController,
+          private registerPageApiService : ApiserviceService , private router:Router
+          ,private alertController: AlertController
+    ) {
 
     this.formBuilder = formbBuilder
     
@@ -49,28 +53,35 @@ export class RegisterPage implements OnInit {
 
   register(){
 
-    console.log("register")
+    
     
 
     // Change this to Validation Module
-    console.log(typeof(this.registeredUsers))
-    console.log(typeof(this.newUser))
+    
    
     // this.showLoading();
 
     //wrap this in a promise
     if(this.RegisterForm.value.regisPass == this.RegisterForm.value.regisPassRep){
-      this.newUser.email = this.RegisterForm.value.regisMail;
+      this.newUser.mail = this.RegisterForm.value.regisMail;
       this.newUser.password = this.RegisterForm.value.regisPass ;
-      this.newUser.phone = this.RegisterForm.value.regisNum;
+      this.newUser.phonenum = this.RegisterForm.value.regisNum;
 
-      console.log(this.newUser)
-      this.registeredUsers.push(this.newUser)
-      console.log(this.registeredUsers)
-
-      this.registeredUsers.forEach(e=>{
+      
+     this.registerPageApiService.addNewUser(this.newUser).subscribe(e=>{
         console.log(e)
+        this.showLoading()
+        if(e!=null){
+         setTimeout(() => {
+          this.router.navigate(['home'])
+         }, 3500);
+         
+        }
+        else 
+        this.presentAlert();
       })
+
+      
 
       // wrap this in a promise
 
@@ -97,5 +108,24 @@ export class RegisterPage implements OnInit {
 
     loading.present();
   }
+
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Sign-In Error',
+
+      message: 'Invalid Login or Password',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+
+    //Timed alert Dismiss
+    /*setTimeout(async () => {
+      await alert.dismiss();
+    }, 5000);
+*/
+
+}
 
 }

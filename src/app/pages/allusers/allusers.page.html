@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="dark">
+
+    <ion-buttons slot="start"  >
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="success">Registered Users</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid style="border: 1px solid grey;">
+    <ion-row style="border: 1px solid grey;">
+      <ion-col>User Mail</ion-col>
+      <ion-col>User Number</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let users of allUsers " style="border: 1px solid grey;">
+      
+      <ion-col style="border: 1px solid grey;" >{{users.mail}}</ion-col>
+      <ion-col style="border: 1px solid grey;">{{users.phonenum}}</ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

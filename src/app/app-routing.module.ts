@@ -30,9 +30,14 @@ const routes: Routes = [
   {
     path: 'resetpass',
     loadChildren: () => import('./pages/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
-  },  {
+  },
+  {
     path: 'admin-dash',
     loadChildren: () => import('./pages/admin-dash/admin-dash.module').then( m => m.AdminDashPageModule)
+  },
+  {
+    path: 'admin-dash/allusers',
+    loadChildren: () => import('./pages/allusers/allusers.module').then( m => m.AllusersPageModule)
   }
 
 ];

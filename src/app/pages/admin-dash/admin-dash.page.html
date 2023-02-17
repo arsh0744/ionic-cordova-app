@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>adminDash</ion-title>
+    <ion-title>Admin Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+  <ion-tabs>
+    <ion-router-outlet></ion-router-outlet>
+  
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="search">
+        <ion-icon name="search"></ion-icon>
+        Search
+      </ion-tab-button>
+      <ion-tab-button tab="home">
+        <ion-icon name="play-circle"></ion-icon>
+        Listen Now
+      </ion-tab-button>
+      <ion-tab-button tab="allusers">
+        <ion-icon name="happy"></ion-icon>
+        Registered Users
+       
+      </ion-tab-button>
+      <ion-tab-button tab="Account">
+        <ion-icon name="glasses"></ion-icon>
+        Account
+      </ion-tab-button>
+      
+    </ion-tab-bar>
+  </ion-tabs>
 
 </ion-content>

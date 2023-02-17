@@ -1,8 +1,8 @@
 export class User {
 
-    email: string;
+    mail: string;
     password: string;
-    phone: number;
+    phonenum: number;
 
 
 }
